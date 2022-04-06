@@ -22,17 +22,9 @@ var buttons = document.getElementById("button1");
 var buttons2 = document.getElementById("button2");
 var buttons3 = document.getElementById("button3");
 var korean = document.getElementById("test");
-var remove = function(){
-		for(var i =0; i<markers.length; i++)
-	{
-		marker = markers[i];
-		marker.setMap(null);
-		customoverlay = custumoverlays[i];
-		customoverlay.setMap(null);
-		
-	}
+var korean2 = document.getElementById("korean");
+var closeBtns = [];
 
-}
 {for (var i = 0; i < data.length; i ++) {
     // 마커 이미지의 이미지 크기 입니다
     var imageSize = new kakao.maps.Size(24, 35); 
@@ -46,7 +38,7 @@ var remove = function(){
         position: markerposition, // 마커를 표시할 위치
         title : data[i][0], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
         image : markerImage, // 마커 이미지 
-		code : data[i][1]
+
     });
                         var Customcontent = document.createElement('div');
 						Customcontent.className = "wrap";
@@ -65,7 +57,7 @@ var remove = function(){
 						var closeBtn = document.createElement("div");
 						closeBtn.className = "close";
 						closeBtn.setAttribute("title","닫기");
-						closeBtn.onclick = function() { customoverlay.setMap(null); };
+						closeBtn.onclick = function() {customoverlay.setMap(null); };
 						contentTitle.appendChild(closeBtn);
 
 						var bodyContent = document.createElement("div");
@@ -115,35 +107,28 @@ var customoverlay = new kakao.maps.CustomOverlay({
     content:  Customcontent,
     position: marker.getPosition()       
 });
-if(marker.code = 1)
-{
+if(data[i][1]==1){
 	markers1.push(marker);
-
-}
-else if(marker.code = 2)
+}else if(data[i][1]==2)
 {
 	markers2.push(marker);
-}
-else if(marker.code = 3)
+}else if(data[i][1]==3)
 {
 	markers3.push(marker);
-}
-else if(marker.code = 4)
+}else if(data[i][1]==4)
 {
 	markers4.push(marker);
-}
-else if(marker.code = 5)
+}else if(data[i][1]==5)
 {
 	markers5.push(marker);
-}
-else if(marker.code = 6)
+}else if(data[i][1]==6)
 {
 	markers6.push(marker);
 }
 markers.push(marker);
 custumoverlays.push(customoverlay);
+closeBtns.push(closeBtn);
 // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-
 }
 // 클릭 이벤트 핸들러
 function getClickHandler(seq){
@@ -162,6 +147,7 @@ for (var i=0, ii=markers.length; i<ii; i++) {
     kakao.maps.event.addListener(markers[i], 'click', getClickHandler(i));
 	
 }
+
 //거리순으로 정렬하기 위한 옵션입니다. 
 // 원(Circle)의 옵션으로 넣어준 반지름
 // 마커들이 담긴 배열
@@ -274,3 +260,101 @@ buttons3.onclick = function(){
 	}
 }
 
+korean.onclick = function(){
+	for(var i=0; i<markers1.length; i++)
+	{
+		marker = markers1[i];
+		marker.setMap(map);
+	}
+	buttons.onclick = function(){
+radius = 1000;
+//마커와 커스텀 오버레이를 정의합니다. 
+// 클릭 이벤트 핸들러
+function getClickHandler(seq){
+	return function(e){
+		var marker = markers[seq],
+			customoverlay = custumoverlays[seq];
+			if (customoverlay.getMap()) {
+            customoverlay.setMap(null);
+        } else {
+            customoverlay.setMap(map);
+        }
+	}
+}
+// 마커 클릭시 이벤트를 정의합니다. 
+for (var i=0, ii=markers1.length; i<ii; i++) {
+    kakao.maps.event.addListener(markers1[i], 'click', getClickHandler(i));
+	
+}
+//거리순으로 정렬하기 위한 옵션입니다. 
+// 원(Circle)의 옵션으로 넣어준 반지름
+// 마커들이 담긴 배열
+markers1.forEach(function(m) {
+    var c1 = map.getCenter();
+    var c2 = m.getPosition();
+    var poly = new kakao.maps.Polyline({
+      // map: map, 을 하지 않아도 거리는 구할 수 있다.
+      path: [c1, c2]
+    });
+    var dist = poly.getLength(); // m 단위로 리턴
+
+    if (dist < radius) {
+        m.setMap(map);
+    } else {
+        m.setMap(null);
+    }
+});
+}
+buttons2.onclick = function(){
+	radius = 3000;
+//마커와 커스텀 오버레이를 정의합니다. 
+// 클릭 이벤트 핸들러
+function getClickHandler(seq){
+	return function(e){
+		var marker = markers[seq],
+			customoverlay = custumoverlays[seq];
+			if (customoverlay.getMap()) {
+            customoverlay.setMap(null);
+        } else {
+            customoverlay.setMap(map);
+        }
+	}
+}
+// 마커 클릭시 이벤트를 정의합니다. 
+for (var i=0, ii=markers1.length; i<ii; i++) {
+    kakao.maps.event.addListener(markers[i], 'click', getClickHandler(i));
+	
+}
+//거리순으로 정렬하기 위한 옵션입니다. 
+// 원(Circle)의 옵션으로 넣어준 반지름
+
+
+
+// 마커들이 담긴 배열
+markers1.forEach(function(m) {
+    var c1 = map.getCenter();
+    var c2 = m.getPosition();
+    var poly = new kakao.maps.Polyline({
+      // map: map, 을 하지 않아도 거리는 구할 수 있다.
+      path: [c1, c2]
+    });
+    var dist = poly.getLength(); // m 단위로 리턴
+
+    if (dist < radius) {
+        m.setMap(map);
+    } else {
+        m.setMap(null);
+    }
+});
+}
+buttons3.onclick = function(){
+	for(var i =0; i<markers.length; i++)
+	{
+		marker = markers[i];
+		marker.setMap(null);
+		customoverlay = custumoverlays[i];
+		customoverlay.setMap(null);
+		
+	}
+}
+}
