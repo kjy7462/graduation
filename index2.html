@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>아동 복지센터 조회 서비스</title>
+  <!--카카오맵 api 사용-->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cd3110546dae90aaca943639c90c9a54&libraries=services"></script>
+	<link href="index.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js2.js" defer></script>
+	 
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+     아동복지센터 조회 서비스  
+     </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+</div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">아동복지센터란?</h5>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <p class="card-text">- 지역사회 아동의 보호, 교육, 건전한 놀이와 오락의 제공, 보호자와 지역사회의
+                        연계등 아동의 건전육성을 위하여 종합적인 아동복지서비스를 제공하는 시설.<br>
+                        -대상아동-18세미만<br>
+                        -아동등록 우선순위 <br>
+                        1. 국민기초생활보장, 수급권자 가정아동<br>
+                        2. 차상위계층, 조손, 다문화, 장애, 한부모아동<br>
+                        3, 기타 지역사회에서 보호가 필요하다고 판단하는 아동</p>
+    <a href="https://www.icareinfo.go.kr/info/oper/operDetail.do?bbs_section_cd=orderinfo2&bbs_no=170&menuNo=2001200" target = "_blank" class="card-link">돌봄 서비스 신청</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
