@@ -97,7 +97,11 @@ var closeBtns = [];
 						descContent.appendChild(link);
 						var menu = document.createElement("div");
 						menu.className = "ellipsis";
-						menu.appendChild(document.createTextNode(data[i][1]));
+                        menu.appendChild(document.createTextNode("open:"));
+						menu.appendChild(document.createTextNode(data[i][6]));
+                        menu.appendChild(document.createTextNode("   "));
+                        menu.appendChild(document.createTextNode("close:"));
+						menu.appendChild(document.createTextNode(data[i][7]));
 						descContent.appendChild(menu);
 						//마커 위에 커스텀오버레이 콘텐츠 Dom으로 구현 끝
 
