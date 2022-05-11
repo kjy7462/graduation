@@ -172,8 +172,15 @@ markers.forEach(function(m) {
 
 }
 buttons.onclick = function(){
+	for(var i =0; i<markers.length; i++)
+	{
+		marker = markers[i];
+		marker.setMap(null);
+		customoverlay = custumoverlays[i];
+		customoverlay.setMap(null);
+		
+	}
 radius = 1000;
-	
 //마커와 커스텀 오버레이를 정의합니다. 
 // 클릭 이벤트 핸들러
 function getClickHandler(seq){
@@ -212,7 +219,30 @@ markers.forEach(function(m) {
 });
 }
 buttons2.onclick = function(){
+    	for(var i =0; i<markers.length; i++)
+	{
+		marker = markers[i];
+		marker.setMap(null);
+		customoverlay = custumoverlays[i];
+		customoverlay.setMap(null);
+		
+	}
 	radius = 3000;
+    markers.forEach(function(m) {
+    var c1 = map.getCenter();
+    var c2 = m.getPosition();
+    var poly = new kakao.maps.Polyline({
+      // map: map, 을 하지 않아도 거리는 구할 수 있다.
+      path: [c1, c2]
+    });
+    var dist = poly.getLength(); // m 단위로 리턴
+
+    if (dist < radius) {
+        m.setMap(map);
+    } else {
+        m.setMap(null);
+    }
+});
 //마커와 커스텀 오버레이를 정의합니다. 
 // 클릭 이벤트 핸들러
 function getClickHandler(seq){
@@ -237,21 +267,7 @@ for (var i=0, ii=markers.length; i<ii; i++) {
 
 
 // 마커들이 담긴 배열
-markers.forEach(function(m) {
-    var c1 = map.getCenter();
-    var c2 = m.getPosition();
-    var poly = new kakao.maps.Polyline({
-      // map: map, 을 하지 않아도 거리는 구할 수 있다.
-      path: [c1, c2]
-    });
-    var dist = poly.getLength(); // m 단위로 리턴
 
-    if (dist < radius) {
-        m.setMap(map);
-    } else {
-        m.setMap(null);
-    }
-});
 }
 buttons3.onclick = function(){
 	for(var i =0; i<markers.length; i++)
